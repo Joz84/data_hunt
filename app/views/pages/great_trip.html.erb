@@ -1,32 +1,20 @@
 <div class="container px-5 text-justify">
   <div class="px-5">
 
-    <%= render "components/title", title: "Un bateau chargé d'histoire" %>
+    <%= render "components/title", title: "Décryptage" %>
 
-    <div class="text-center mb-5">
-      <%= image_tag "bounty.jpeg" %>
-    </div>
 
+    <p>Vous touchez au but. Vous avez maintenant accès à la base de données. 
+    Celle-ci contient notamment les plans des bâtiments mais aussi ou se trouve 
+    précisément le coffre contenant l'œuf de Fabergé.
+    Malheureusement ces documents sont encryptés.</p>
     <p>
-      En recherchant sur internet des informations sur ce bateau, vous découvrez la date et le lieu de la mutinerie. Vous y êtes presque !
+      Heureusement il existe un outil en ligne pour les décrypter. Voici <a target="_blank" href="https://decrypt.imageonline.co/">le lien du site</a>. 
     </p>
     <p>
-      Si seulement vous pouviez retrouver le boulet de canon dans lequel il y a la carte, ce serait gagné…
+      Bravo! Vous avez trouvez les documents attendus par Arlette. Vous allez pouvoir les lui envoyer.
     </p>
-    <p>
-      Peut-être que dans la base de données, un article fait référence à cette mutinerie et à ces fameux mutins.
-      <br>
-      Si c’est le cas vous pourriez en apprendre plus et peut-être même identifier le plus réfractaire d’entre eux (puisque c’est lui qui détenait le boulet et donc la carte).
-    </p>
-
-    <div class="tech-point">
-      <h4>Point technique</h4>
-      <p>
-        Vous pouvez faire une recherche plus précise dans la base de données en tapant les touches « contrôle » (CTRL) et « F » en même temps.
-      </p>
-    </div>
-
-    <%= render "components/dashboard" %>
+    <%= render "components/dashboard", db: true %>
   </div>
 </div>
 

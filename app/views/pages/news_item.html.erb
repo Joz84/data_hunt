@@ -1,26 +1,32 @@
 <div class="container px-5 text-justify">
   <div class="px-5">
-    <%= render "components/title", title: "Une bien belle collection" %>
-
-    <div class="text-center mb-5">
-      <%= image_tag "watches.jpg", width: "300px"%>
-    </div>
+    <%= render "components/title", title: "Un passage en force!" %>
 
     <p>
-      Vous savez maintenant que Joe habitait probablement dans une de ces trois villes :
+      Super! Cet employé s'est laissé piégé 
+      et le programme vous renvoie un imprime écran du moment où 
+      l'utilisateur a cherché à se connecter au site. Voici cet imprime écran.
     </p>
 
-    <ul>
-      <li>Bath</li>
-      <li>Coventry</li>
-      <li>Dartford</li>
-    </ul>
+    <div class="text-center mb-5 connection">
+      <%= image_tag "connection.png", width: "900px"%>
+      <div class="nick-name"><%= current_user.employee_nick_name %></div>
+      <div class="email"><%= current_user.employee_email %></div>
+    </div>    
+
 
     <p>
-      Mais trois villes, c’est encore trop grand. Il vous faudrait un nouvel indice.
-      Peut-être trouverez-vous quelque-chose dans la base de données.
+      Grâce à cet imprime écran, vous pouvez voir quel est le pseudo de 
+      l’employé. Par-contre vous ne pouvez pas voir son mot de passe. 
+      Rassurez-vous, il existe plusieurs techniques pour trouver 
+      un mot de passe à 6 chiffres. 
+      L’une des techniques s’appelle l’attaque en force. 
+      Elle consiste à tester les mots passes les plus utilisés en espérant 
+      que l’utilisateur en a choisi un parmi cela.
+      La liste des mots de passe les plus utilisés en 2020 est disponible à 
+      <a target="_plank" href="https://nordpass.com/fr/most-common-passwords-list/">cette adresse</a> 
     </p>
 
-    <%= render "components/dashboard" %>
+    <%= render "components/dashboard", db: false %>
   </div>
 </div>

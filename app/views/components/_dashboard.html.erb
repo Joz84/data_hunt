@@ -1,15 +1,22 @@
 <div class="dashboard p-5 mt-5">
   <div class="row">
-    <div class="col-md-6 just">
-      <h4 class="text-center my-3">La base de données</h4>
-      <div class="w-100 d-flex justify-content-center">
-        <div class="db-data-hunt">
-          <div class="db-data-hunt-screen">
-            <iframe src="<%= Result::DB_URL %>"></iframe>
+
+    
+    <% if db %>
+      <div class="col-md-6 just">
+        <h4 class="text-center my-3">La base de données</h4>
+        <div class="w-100 d-flex justify-content-center">
+          <div class="db-data-hunt">
+            <div class="db-data-hunt-screen">
+              <iframe src="<%= Result::DB_URL %>"></iframe>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    <% else %>
+      <div class="offset-md-3"></div>
+    <% end %>
+  
     <div class="col-md-6">
       <%= render "components/form" %>
     </div>

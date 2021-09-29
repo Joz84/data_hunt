@@ -1,33 +1,25 @@
 class PagesController < ApplicationController
   ORDERED_METHODS = {
     data_hacker: [
-      {input: :city_number,
-      label: "Dans combien de villes des montres de valeur ont été volées?"}],
+      {input: :website,
+      label: "Quelle l'adresse du site internet de Havior Company ?"}],
     art_dealers: [
-      {input: :city1, label: "Ville centrale"}, {input: :city2, label: "Ville centrale"}, {input: :city3, label: "Ville centrale"}],
+      {input: :employee_email, label: "Choisissez l'email d'un employé"}],
     news_item: [{
-      input: :news_item_url,
-      label: "Quelle est l'url du document que vous avez trouvé dans la base de données?"
+      input: :employee_pwd,
+      label: "Quel est le mot de passe de l'employé?"
     }],
-    inside_clue: [{
-      input: :google_image_title,
-      label: "Quel est le nom du bateau?",
-    }],
+    inside_clue: [
+      {input: :url, label: "Adresse de la basse de données"},
+      {input: :port, label: "Le port de connection"},
+      {input: :user, label: "L'utilisateur"},
+      {input: :name, label: "Le nom de la base de données"},
+      {input: :db_password, label: "Le mot de passe"},    
+    ],
     great_trip: [{
-      input: :notion_url,
-      label: "Quelle est l'url du document que vous avez trouvé dans la base de données?",
+      input: :place,
+      label: "Dans quelle piece est caché le coffre?",
     }],
-    fake_friend: [
-      {input: :friend1, label: "1er marin le plus virulent (avec la 1ère note la plus haute) "},
-      {input: :friend2, label: "2ème marin le plus virulent (avec la 2ème note la plus haute) "},
-      {input: :friend3, label: "3ème marin le plus virulent (avec la 3ème note la plus haute) "},
-      {input: :friend4, label: "4ème marin le plus virulent (avec la 4ème note la plus haute) "},
-      {input: :friend5, label: "marin le moins virulent (avec la note la plus basse) "} ],
-    bad_move: [{
-      input: :location,
-      label: "Quel est l'animal le plus présent sur le spot de plongée dans lequel le boulet est tombé?",
-    }],
-    ultimate_shovel: [],
     final_treasure: [],
   }
 
@@ -54,6 +46,9 @@ class PagesController < ApplicationController
   def news_item
     @current_method = __method__
     play_validations
+    if !result_params[:employee_email].blank?
+      current_user.update(result_params)
+    end
   end
 
   def inside_clue
@@ -66,20 +61,20 @@ class PagesController < ApplicationController
     play_validations
   end
 
-  def fake_friend
-    @current_method = __method__
-    play_validations
-  end
+  # def fake_friend
+  #   @current_method = __method__
+  #   play_validations
+  # end
 
-  def bad_move
-    @current_method = __method__
-    play_validations
-  end
+  # def bad_move
+  #   @current_method = __method__
+  #   play_validations
+  # end
 
-  def ultimate_shovel
-    @current_method = __method__
-    play_validations
-  end
+  # def ultimate_shovel
+  #   @current_method = __method__
+  #   play_validations
+  # end
 
   def final_treasure
   end
@@ -115,13 +110,16 @@ class PagesController < ApplicationController
   def result_params
     if params[:result]
       params.require(:result).permit(
-        :city_number,
-        :city1, :city2, :city3,
-        :news_item_url,
-        :google_image_title,
-        :notion_url,
-        :friend1, :friend2, :friend3, :friend4, :friend5,
-        :location
+        :website,
+        :employee_email,
+        :employee_pwd,
+        :url,
+        :port,
+        :user,
+        :name,
+        :db_password,
+        :place,
+        :color
         )
     else
       {}

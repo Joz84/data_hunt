@@ -35,8 +35,28 @@
 }
 
 .title {
-  background-image: asset-url("title.png");
+  // background-image: asset-url("title.png");
   background-size: cover;
-  width: 777px;
-  height: 200px;
+  width: 600px;
+  height: 150px;
+  background: #FFE8E8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.connection {
+  position: relative;
+  color: black;
+  .nick-name {
+    position: absolute;
+    top: 120px;
+    left: 290px;
+  }
+  .email {
+    position: absolute;
+    top: 160px;
+    left: 290px;
+  }
 }

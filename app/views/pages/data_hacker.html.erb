@@ -1,42 +1,35 @@
-<div class="container text-justify">
+<div class="container px-5 text-justify">
   <div class="px-5">
 
-    <%= render "components/title", title: "Les archives comme<br>point de départ" %>
+    <%= render "components/title", title: "Retrouver le site internet" %>
+
+    <%# <div class="text-center mb-5"> %>
+      <%#= image_tag "mutiny.jpeg", width: "300px"%>
+    <%# </div> %>
 
     <p>
-      Peut-être qu’en retrouvant Joe l’horloger vous pourriez en apprendre plus.
-      <br>
-      Mais comment faire ?
+      Pour retrouver le site internet, il vous faut trouver un maximum d’informations sur cette société. 
+      Ce ne sera pas chose facile car elle ne souhaite pas être trouvable juste avec une recherche google. 
+      Par contre, il est probable que les développeurs qui ont travaillé sur le site soient présents sur les plateformes de développement.  
     </p>
     <p>
-      Les seules informations que vous avez sur ce Joe, c’est qu’il volait des montres de valeur autour de chez lui à la fin du XVIIIème (soit entre 1770 et 1800).
+      Ci-dessous voici 
+      <a target="_blank" href="https://www.top-hebergement.net/sites-web-developpeurs-devraient-visiter-programmation-tutoriels-plus/#Sites_dhebergement_de_code_source_source_code_hosting_sites">
+        la liste des sites les plus visités par la communauté de développeur
+      </a>
+      , et notamment les sites d'hébergement.
+      Pour gagner du temps, commencez vos recherches par ceux-là.
+      Dans les barres de recherches, taper le nom de la compagnie : "Havior Company" 
+      et voyez si le profil d'un développeur y est associé. Vous trouverez peut plus d'infos sur la société et peut être avec un peu de chance l'adresse du site internet.
     </p>
-    <p>
-      Vous avez une amie qui travaille comme informaticienne aux archives de police. Elle aura surement une piste !
-    <br>
-      Vous décidez de lui demander de l’aide. Elle accepte et prend son ordinateur pour regarder dans la base de données.
-    </p>
-    <p>
-      Malheureusement les bases de données de cette époque sont protégées par un mot de passe, il va falloir « hacker » le système pour pouvoir accéder aux infos. A vous de jouer !
-    </p>
-  </div>
 
-  <div class="d-flex justify-content-center mt-5">
-    <div class="bg-hack">
-      <div class="hack-screen d-flex text-align-center">
-        <div id="hack-console">
-          <textarea name="" id="" cols="30" rows="10">$></textarea>
-        </div>
-        <%= render "components/hacker" %>
-      </div>
-    </div>
-  </div>
+    <%# <div class="tech-point mt-4">
+      <h4>Point technique</h4>
+      <p>
+        En data science, il existe des programmes qui sont capables d’identifier le degré de sympathie que l’auteur véhicule dans un texte. Un de ces programmes a été développé par Microsoft. Il est accessible à l’<a href="https://aidemos.microsoft.com/text-analytics" target="_blank">adresse suivante</a>.
+      </p>
+    </div> %>
 
-  <div id="hack-secret" class="d-none px-10">
-    <p>
-    Bravo vous avez hacké le système et récupéré la base de données. Il ne vous reste plus qu’à trouver dans quelles villes ont eu lieu les vols de montres précieuses. Cela vous aidera sûrement à retrouver Joe !
-    </p>
-    <%= render "components/dashboard" %>
+    <%= render "components/dashboard", db: false %>
   </div>
 </div>
-

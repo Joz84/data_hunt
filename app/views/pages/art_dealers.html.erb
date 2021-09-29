@@ -1,282 +1,35 @@
 <div class="container px-5 text-justify">
   <div class="px-5">
 
-    <%= render "components/title", title: "La carte de l'horloger" %>
-
+    <%= render "components/title", title: "Les identifiants de connection" %>
     <p>
-      Super, vous avez trouvé toutes les villes où il y a eu des vols de montres. Mais cela ne nous dit pas exactement où habitait Joe…
-      <br>
-      En plus, en faisant quelques recherches supplémentaires votre amie a trouvé qu'au moins trois voleurs de montres de collection sévissaient à cette époque. Ce problème n’est finalement pas si simple…
+      Super vous avez trouvé le site. Mais malheureusement, sans avoir de compte, 
+      il est difficile de trouver des informations intéressantes 
+      et le site ne permet pas de se créer un compte. 
+      Il va falloir voler les identifiants d’un employé. 
+      Sur la page « se connecter » on observe que trois informations 
+      sont nécessaires pour se connecter : 
     </p>
+    <ul>
+      <li>le nickname</li>
+      <li>l’email</li>
+      <li>Le mot de passe</li>
+    </ul>
     <p>
-      Pour commencer, vous décidez de disposer précisément toutes ces villes sur la carte.
-      Trois groupes semblent se dessiner. Mais quelle est la ville « centrale » pour chacun de ces groupes ?
+      La liste des emails des employés se trouve dans la page « l’équipe », 
+      mais il vous manque le nickname et le mot de passe.
+      Votre 1er objectif va être de trouver le nickname d’un employé. 
+      Une manière d’arriver à ça est d’envoyer à l’ensemble des employés 
+      un programme malveillant appelé « cheval de troie ». 
+      Ce type de programme peut par exemple vous  permettre de prendre 
+      le contrôle à distance de la machine de votre victime dès qu’elle aura 
+      ouvert votre mail. Ça tombe bien! 
+      Un ami hacker vous a justement envoyé un programme tout près à l’emploi. 
+      Celui-ci à pour spécificité de faire une capture de l’écran de la victime.
+      Il ne vous reste plus qu’à envoyer ce cheval de troie à un employé que 
+      vous avez identifié dans la liste! Si celui-ci est protégé, n'hésitez pas 
+      à envoyer le cheval de troie à un autre employé.
     </p>
-
-    <div class="tech-point mt-4">
-      <h4><i class="fas fa-cogs"></i> Point technique</h4>
-      <p>
-        Pour les déterminer, il existe un outil de data science qui s’appelle la classification.
-        <br>
-        Pour lancer cet outil, il vous suffit de placer les villes sur la carte et
-        d’appuyer sur « démarrer la classification ».
-      </p>
-    </div>
-
-    <p>
-      Dès que cela est fait, vous devriez trouver les trois villes centrales.
-    </p>
-
-    <div class="d-flex justify-content-center mb-3">
-      <button class="btn btn-brown mx-2" onclick="button()">Démarrer la classification</button><br>
-      <button class="btn btn-brown mx-2" onclick="initialise()">Réinitialiser la carte</button><br>
-    </div>
-</div>
-
-<div class="d-flex justify-content-around">
-  <div id="hunt-map">
-    <div id='hunt-clusturing'></div>
+    <%= render "components/dashboard", db: false %>
   </div>
-</div>
-
-<div class="container px-5 pt-5 text-justify">
-  <p>
-    Bien joué ! Une étape de plus de passée !
-  </p>
-</div>
-
-<%= render "components/dashboard" %>
-
-
-
-<script type="text/javascript" src="https://d3js.org/d3.v2.min.js"></script>
-<script type="text/javascript">
-  var data = [];
-  var centres = [];
-  var vertices;
-
-  var color = d3.scale.category10();
-
-  var xPadding = 0;
-  var yPadding = 0;
-
-  var width = 500;
-  var height = 500;
-
-  var innerWidth = width - 2*xPadding;
-  var innerHeight = height - 2*yPadding;
-
-  var svg = d3.select("#hunt-clusturing")
-    .append("svg")
-      .attr("width", width)
-      .attr("height", height)
-    .append("g")
-      .attr("transform", "translate(" + [xPadding, yPadding] + ")");
-
-  var bounds = d3.geom.polygon([
-    [0, 0],
-    [0, height - 2*yPadding],
-    [width - 2*xPadding, height - 2*yPadding],
-    [width - 2*xPadding, 0]
-  ]);
-
-  var dragCentre = d3.behavior.drag()
-    .origin(Object)
-    .on("drag", function(d){
-      var circle = d3.select(this);
-
-    circle
-      .attr("cx", d.x = Math.max(0, Math.min(width - 2*xPadding, d3.event.x)))
-      .attr("cy", d.y = Math.max(0, Math.min(height - 2*yPadding, d3.event.y)));
-
-    circle.datum().x = Math.max(0, Math.min(width - 2*xPadding, d3.event.x));
-    circle.datum().y = Math.max(0, Math.min(height - 2*yPadding, d3.event.y));
-
-    })
-    .on("dragend", function(d){
-      assignment();
-      svg.selectAll("circle.data").transition().delay(1500).style("fill", function(d){return color(d.cluster);});
-    drawVoronoi(1000,1000);
-    });
-
-  var dragData = d3.behavior.drag()
-    .origin(Object)
-    .on("drag", function(d){
-      var circle = d3.select(this);
-
-    circle
-      .attr("cx", d.x = Math.max(0, Math.min(width - 2*xPadding, d3.event.x)))
-      .attr("cy", d.y = Math.max(0, Math.min(height - 2*yPadding, d3.event.y)));
-
-    circle.datum().x = Math.max(0, Math.min(width - 2*xPadding, d3.event.x));
-    circle.datum().y = Math.max(0, Math.min(height - 2*yPadding, d3.event.y));
-
-    })
-    .on("dragend", function(d){
-      assignment();
-      svg.selectAll("circle.data").transition().delay(1500).style("fill", function(d){return color(d.cluster);});
-    });
-
-
-  initialise();
-
-
-  function initialise()
-  {
-    svg.selectAll("circle.centres_history").remove();
-    svg.selectAll("line.history").remove();
-    svg.selectAll("rect.clickable").remove();
-
-    generateCentres();
-
-    data = [];
-    svg.selectAll("circle.data").remove();
-    svg.append("rect")
-    .attr("x", 0)
-    .attr("y", 0)
-    .attr("width", innerWidth)
-    .attr("height", innerHeight)
-    .attr("class", "clickable")
-    .attr("fill", "#ffffff")
-    .style("fill-opacity", 0)
-    .on("click", function(d){
-      var mouse = d3.svg.mouse(this);
-    var x = mouse[0];
-    var y = mouse[1];
-
-    data.push({"x" : x, "y" : y, "cluster" : -1});
-
-    assignment(0);
-    drawDataPoints();
-    });
-
-    drawPoints();
-    drawVoronoi(0, 1000);
-    assignment();
-  }
-
-  function generateCentres()
-  {
-    centres = [
-      {"x" : (width-2*xPadding) * 1.0/2, "y" : (height-2*yPadding) * 1.0/3},
-      {"x" : (width-2*xPadding) * 2.0/3, "y" : (height-2*yPadding) * 2.0/3},
-      {"x" : (width-2*xPadding) * 1.0/3, "y" : (height-2*yPadding) * 2.0/3}
-    ];
-
-  }
-
-  function drawPoints()
-  {
-    svg.selectAll("circle.data").remove();
-
-    drawDataPoints();
-
-    svg.selectAll("circle.centres").remove();
-
-    svg.selectAll("circle.centres").data(centres).enter()
-      .append("circle")
-        .attr("class", "centres")
-        .attr("cx", function(d){return d.x;})
-        .attr("cy", function(d){return d.y;})
-        .attr("r", 10)
-        .style("fill", "#000000")
-      .call(dragCentre);
-  }
-
-  function drawDataPoints()
-  {
-    svg.selectAll("circle.data").data(data).enter()
-      .append("circle")
-        .attr("class", "data")
-        .attr("cx", function(d){return d.x;})
-        .attr("cy", function(d){return d.y;})
-        .attr("r", 5)
-        .style("fill", function(d){return color(d.cluster);})
-        .call(dragData);
-  }
-
-  function drawVoronoi(delay, duration)
-  {
-      svg.selectAll("path.voronoi").data([]).exit().transition().duration(1000).attr("stroke-opacity", 0).remove();
-
-    var vertices = centres.map(function(d) {
-      return [d.x, d.y];
-    });
-
-    svg.selectAll("path.new")
-      .data(d3.geom.voronoi(vertices).map(function(cell) { return bounds.clip(cell); }))
-    .enter().append("path")
-    .attr("stroke-opacity", 0)
-    .attr("class", "voronoi")
-    .transition().delay(delay).duration(duration)
-      .attr("d", function(d) { return "M" + d.join("L") + "Z"; })
-    .attr("fill", "none")
-    .attr("stroke", "#999999")
-    .attr("stroke-opacity", 1);
-  }
-
-  function button()
-  {
-    iterate();
-
-    svg.selectAll("circle.centres").transition().duration(2000)
-      .attr("cx", function(d){return d.x;})
-      .attr("cy", function(d){return d.y;});
-
-    drawVoronoi(1000,1000);
-  };
-
-  function assignment(delay)
-  {
-    for(var i = 0; i < data.length; i++)
-    {
-      var assigned = 0;
-      var bestDistance = Math.sqrt(Math.pow(data[i].x - centres[0].x,2) + Math.pow(data[i].y - centres[0].y,2));
-
-      for(var j = 1; j < centres.length; j++)
-      {
-        var distance = Math.sqrt(Math.pow(data[i].x - centres[j].x,2) + Math.pow(data[i].y - centres[j].y,2));
-        if(distance < bestDistance)
-      {
-        assigned = j;
-        bestDistance = distance;
-      }
-      }
-
-      data[i].cluster = assigned;
-    };
-
-    svg.selectAll("circle.data").transition().delay(delay).style("fill", function(d){return color(d.cluster);});
-  }
-
-  function iterate()
-  {
-    for(var j = 0; j < centres.length; j++)
-    {
-      var totalX = 0;
-      var totalY = 0;
-      var countPoints = 0;
-
-      for(var i = 0; i < data.length; i++)
-      {
-        if(data[i].cluster == j)
-      {
-        totalX = totalX + data[i].x;
-        totalY = totalY + data[i].y;
-        countPoints += 1;
-      }
-      }
-
-      if(countPoints != 0)
-      {
-        centres[j].x = totalX / countPoints;
-        centres[j].y = totalY / countPoints;
-      }
-    }
-
-    assignment(500);
-  }
-
-</script>
-
 </div>

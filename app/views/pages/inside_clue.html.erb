@@ -1,51 +1,29 @@
 <div class="container px-5 text-justify">
   <div class="px-5">
 
-    <%= render "components/title", title: "Un indice dans l’indice" %>
-
-    <div class="text-center mb-5">
-      <%= image_tag "scissors.jpg", width: "300px"%>
-    </div>
+    <%= render "components/title", title: "Le back office est à nous!" %>
 
     <p>
-      Super, vous avez trouvé un article qui semble parler de Joe et de votre oncle dans le journal ! Il doit sûrement y avoir des infos.
+    Super, vous avez réussi à vous connecter. Vous avez accès à plus d’informations. Vous pouvez par exemple voir le profil de l’employé grâce à l’onglet « mon compte ». 
     </p>
     <p>
-      Hélas, rien de très clair à part peut-être sur la photo ! On distingue un bateau sur le tableau en arrière-plan. C’est probablement celui sur lequel ils ont embarqué pour faire ce fabuleux voyage !
+    Malheureusement cet employé n’a que des droits très limités et n’a pas accès 
+    au back office. Ce qui serait idéal ce serait de vous augmenter les droits. 
+    Si le site est mal protégé cela est peut être possible. 
+    En effet une méthode appelée attaque par injection permet de modifier 
+    une information personnelle même si on en a pas le droit initialement. 
+    Ici nous voulons modifier votre compte pour que vous soyez admin. 
+    Pour cela il va falloir écrire quelques lignes de code. Appeler 
+    le professeur pour qu’il accompagne dans la démarche.
     </p>
     <p>
-      Faites une découpe précise du tableau à l’intérieur de l’illustration de l’article grâce à l’outil <a href="https://www.iloveimg.com/fr/recadrer-image" target="_blank">www.iloveimg.com</a> .
+    Une fois la modification faite, un bouton « back office » est apparu en haut à droite. Appuyez dessus pour et ça y est vous êtes entré dans l’espace admin.
     </p>
-
-    <div class="tech-point mt-4">
-      <h4>Point technique</h4>
-      <p>
-        Pour ça il vous faut télécharger l’image sur votre machine en faisant « clic droit », puis « Enregistrer l’image sous… ».
-      </p>
-      <p>
-        Ensuite, il ne vous reste plus qu’à cliquer sur « Sélectionner des images », puis sélectionner l’image sur votre machine dans le dossier où vous l’avez enregistrée.
-        <br>
-        Il vous faudra découper précisément le tableau (de préférence à l’intérieur du cadre), puis télécharger cette nouvelle image sur votre machine.
-      </p>
-    </div>
-
-    <!-- <iframe src="https://www.iloveimg.com/fr/recadrer-image" frameborder="0" width="500" height="500"></iframe> -->
-
     <p>
-      Maintenant que vous avez isolé ce tableau, il faudrait l’identifier ! Heureusement, il existe des outils pour ça ! Google images en est un.
+    Vous avez maintenant accès aux identifiants de la base de données. 
+    Connectez-vous à celle-ci en remplissant les identifiants ci-dessous.
     </p>
 
-    <div class="tech-point">
-      <h4>Point technique</h4>
-      <p>
-        Faites glisser l’image du tableau dans la barre de recherche de <a href="https://www.google.fr/imghp?hl=fr" target="_blank">google images</a>
-      </p>
-    </div>
-
-    <p>
-      Ça y est vous avez retrouvé le nom du bateau sur le tableau : félicitations, vous avancez !
-    </p>
-
-    <%= render "components/dashboard" %>
+    <%= render "components/dashboard", db: false %>
   </div>
 </div>
