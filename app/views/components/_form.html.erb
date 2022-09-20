@@ -2,7 +2,7 @@
 <div class="bg-paper p-4">
   <div class="bg-paper-corner"></div>
   <h4 class="text-center pb-5">Un nouvel indice?</h4>
-  <%= simple_form_for @result, url: @next_path, method: :get do |f| %>
+  <%= simple_form_for @result, url: @next_path, method: :get, html: { autocomplete: 'off' } do |f| %>
     <% @searched_attrs.each do |attr| %>
       <%= f.input attr[:input], label: attr[:label] %>
     <% end %>

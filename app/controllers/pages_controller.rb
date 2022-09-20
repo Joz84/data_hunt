@@ -19,7 +19,7 @@ class PagesController < ApplicationController
     }],
     fake_friend: [
       {input: :friend1, label: "1er marin le plus virulent (avec la 1ère note la plus haute) "},
-      {input: :friend2, label: "2ème marin le plus virulent (avec la 2ème note la plus haute) "},
+      {input: :friend2, label: "2ème marin le plus  (avec la 2ème note la plus haute) "},
       {input: :friend3, label: "3ème marin le plus virulent (avec la 3ème note la plus haute) "},
       {input: :friend4, label: "4ème marin le plus virulent (avec la 4ème note la plus haute) "},
       {input: :friend5, label: "marin le moins virulent (avec la note la plus basse) "} ],
@@ -128,4 +128,3 @@ class PagesController < ApplicationController
     end
   end
 end
-

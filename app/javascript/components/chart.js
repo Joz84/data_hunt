@@ -26,26 +26,45 @@ const chartPlot = () => {
           enabled: true
         }
       },
-      [50, 0],
-      [100, 0],
-      [300, 0],
-      [1000, 0],
-      [2000, 0],
       {x: 2900,
        y: 0,
-       name: "2900 - Le comptoir des requins"
+       name: "2900 - Le comptoir des requins",
+        marker: {
+          width: 50,
+          height: 50,
+          symbol: 'url(https://www.pngmart.com/files/5/Shark-PNG-Picture.png)',
+          enabled: true
+        }
       },
       {x: 3010,
        y: 0,
-       name: "3010 - L'aquarium aux tortues"
+       name: "3010 - L'aquarium aux tortues",
+        marker: {
+          width: 50,
+          height: 50,
+          symbol: 'url(https://www.pngmart.com/files/3/Box-Turtle-PNG-HD.png)',
+          enabled: true
+        }
       },
       {x: 3120,
        y: 0,
-       name: "3120 - Le carrefour des dauphins"
+       name: "3120 - Le carrefour des dauphins",
+        marker: {
+          width: 50,
+          height: 50,
+          symbol: 'url(https://down.imgspng.com/download/0720/dolphin_PNG9130.png)',
+          enabled: true
+        }
       },
       {x: 3230,
        y: 0,
-       name: "3230 - La vallée des mantas"
+       name: "3230 - La vallée des mantas",
+        marker: {
+          width: 50,
+          height: 50,
+          symbol: "url(https://res.cloudinary.com/dlv56kaz0/image/upload/v1663697116/data-hunt/manta_pgpink.png)",
+          enabled: true
+        }
       }
     ];
 
@@ -120,7 +139,7 @@ const chartPlot = () => {
           fillColor: 'gray',
           lineWidth: 2,
           // lineColor: Highcharts.getOptions().colors[0]
-        }
+        },
       }]
 
     });
