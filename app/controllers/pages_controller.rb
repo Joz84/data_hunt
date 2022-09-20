@@ -18,11 +18,11 @@ class PagesController < ApplicationController
       label: "Quelle est l'url du document que vous avez trouvé dans la base de données?",
     }],
     fake_friend: [
-      {input: :friend1, label: "1er marin le plus virulent (avec la 1ère note la plus haute) "},
-      {input: :friend2, label: "2ème marin le plus  (avec la 2ème note la plus haute) "},
-      {input: :friend3, label: "3ème marin le plus virulent (avec la 3ème note la plus haute) "},
-      {input: :friend4, label: "4ème marin le plus virulent (avec la 4ème note la plus haute) "},
-      {input: :friend5, label: "marin le moins virulent (avec la note la plus basse) "} ],
+      {input: :friend1, label: "1er marin le plus virulent (avec le score le plus proche de 0)"},
+      {input: :friend2, label: "2ème marin le plus"},
+      {input: :friend3, label: "3ème marin le plus virulent"},
+      {input: :friend4, label: "4ème marin le plus virulent"},
+      {input: :friend5, label: "marin le moins virulent (avec le score le plus proche de 100) "} ],
     bad_move: [{
       input: :location,
       label: "Quel est l'animal le plus présent sur le spot de plongée dans lequel le boulet est tombé?",
