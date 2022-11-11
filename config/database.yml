@@ -78,8 +78,12 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
+# production:
+#   <<: *default
+#   database: data_hunt_production
+#   username: data_hunt
+#   password: <%= ENV['DATA_HUNT_DATABASE_PASSWORD'] %>
+
 production:
   <<: *default
-  database: data_hunt_production
-  username: data_hunt
-  password: <%= ENV['DATA_HUNT_DATABASE_PASSWORD'] %>
+  url: <%= ENV['DATABASE_URL'] %>
